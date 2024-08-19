@@ -60,8 +60,8 @@
         <br><br>
         <label for="price-option">انتخاب قیمت:</label>
         <select id="price-option" name="price-option">
-            <option value="future">قیمت احتمالی در آینده (0.01 سنت)</option>
-            <option value="presale">قیمت پیش فروش (0.002 سنت)</option>
+            <option value="future">قیمت احتمالی در آینده (0.01 دلار)</option>
+            <option value="presale">قیمت پیش فروش (0.002 دلار)</option>
         </select>
         <br><br>
         <button onclick="calculatePrice()">محاسبه</button>
@@ -86,13 +86,13 @@
             let pricePerToken;
 
             if (priceOption === 'future') {
-                pricePerToken = 0.01 / 100; // تبدیل سنت به دلار
+                pricePerToken = 0.01; // قیمت احتمالی در آینده به دلار
             } else if (priceOption === 'presale') {
-                pricePerToken = 0.002 / 100; // تبدیل سنت به دلار
+                pricePerToken = 0.002; // قیمت پیش فروش به دلار
             }
 
             const totalPriceUSD = tokens * pricePerToken;
-            const totalPriceIRR = totalPriceUSD * 60000;
+            const totalPriceIRR = totalPriceUSD * 60000; // نرخ تبدیل دلار به تومان
 
             document.getElementById('result').innerHTML = `
                 <p>تعداد توکن: ${formatNumber(tokens)}</p>
