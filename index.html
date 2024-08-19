@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه قیمت توکن داگز</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            margin-top: 20px;
+        }
+        .footer button {
+            background-color: #007BFF;
+            color: white;
+        }
+        .footer button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://github.com/Mahdiklidari/Dogs/blob/main/Do.jpg" alt="Dog Image">
+        <h1>محاسبه قیمت توکن داگز</h1>
+        <label for="tokens">تعداد توکن داگز:</label>
+        <input type="number" id="tokens" name="tokens" required>
+        <br><br>
+        <label for="price-option">انتخاب قیمت:</label>
+        <select id="price-option" name="price-option">
+            <option value="future">قیمت احتمالی در آینده (0.01 سنت)</option>
+            <option value="presale">قیمت پیش فروش (0.002 سنت)</option>
+        </select>
+        <br><br>
+        <button onclick="calculatePrice()">محاسبه</button>
+        <div class="result" id="result"></div>
+        <div class="footer">
+            <button onclick="window.location.href='https://t.me/PhoenixofBlack'">گروه سازنده</button>
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(number) {
+            return number.toLocaleString();
+        }
+
+        function calculatePrice() {
+            const tokens = document.getElementById('tokens').value;
+            const priceOption = document.getElementById('price-option').value;
+            let pricePerToken;
+
+            if (priceOption === 'future') {
+                pricePerToken = 0.01 / 100; // تبدیل سنت به دلار
+            } else if (priceOption === 'presale') {
+                pricePerToken = 0.002 / 100; // تبدیل سنت به دلار
+            }
+
+            const totalPriceUSD = tokens * pricePerToken;
+            const totalPriceIRR = totalPriceUSD * 60000;
+
+            document.getElementById('result').innerHTML = `
+                <p>تعداد توکن: ${formatNumber(tokens)}</p>
+                <p>قیمت کل به دلار: $${formatNumber(totalPriceUSD.toFixed(2))}</p>
+                <p>قیمت کل به تومان: ${formatNumber(totalPriceIRR.toFixed(0))} تومان</p>
+            `;
+        }
+    </script>
+</body>
+</html>
