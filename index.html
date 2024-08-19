@@ -73,7 +73,11 @@
 
     <script>
         function formatNumber(number) {
-            return number.toLocaleString();
+            return number.toLocaleString('fa-IR');
+        }
+
+        function formatNumberWithSlash(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "/");
         }
 
         function calculatePrice() {
@@ -93,7 +97,7 @@
             document.getElementById('result').innerHTML = `
                 <p>تعداد توکن: ${formatNumber(tokens)}</p>
                 <p>قیمت کل به دلار: $${formatNumber(totalPriceUSD.toFixed(2))}</p>
-                <p>قیمت کل به تومان: ${formatNumber(totalPriceIRR.toFixed(0))} تومان</p>
+                <p>قیمت کل به تومان: ${formatNumberWithSlash(totalPriceIRR.toFixed(0))} تومان</p>
             `;
         }
     </script>
